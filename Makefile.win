@@ -1,0 +1,43 @@
+# Project: Tanu
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = sh-coff-g++.exe
+CC   = sh-coff-gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = cinit.o main.o textures.o polygons.o loader.o $(RES)
+LINKOBJ  = cinit.o main.o textures.o polygons.o loader.o $(RES)
+LIBS =  -L"C:/SaturnOrbit/SGL_302j/LIB_COFF" -L"C:/SaturnOrbit/SBL_601/SEGALIB/LIB_COFF" -L"C:/SaturnOrbit/TOOLS/BGCON" -L"C:/SaturnOrbit/RB/BUILD/Saturn/LIB_COFF" -L"C:/SaturnOrbit/DUCK/SATURN/SEGALIB/LIB" -L"C:/SaturnOrbit/DUCK/SATURN/SEGALIB/LIB" -m2 -Xlinker -T$(LINKFILE)  -Xlinker -Map -Xlinker $(MAPFILE) -Xlinker -e -Xlinker ___Start -nostartfiles C:/SaturnOrbit/SGL_302j/LIB_COFF/SGLAREA.O C:/SaturnOrbit/SGL_302j/LIB_COFF/SEGA_SYS.A -lcd -lsgl  
+INCS =  -I"C:/SaturnOrbit/SH_COFF/sh-coff/sh-coff/include"  -I"C:/SaturnOrbit/SGL_302j/INC"  -I"C:/SaturnOrbit/SBL_601/SEGALIB/INCLUDE"  -I"C:/SaturnOrbit/TOOLS/BGCON"  -I"C:/SaturnOrbit/RB/INC"  -I"C:/SaturnOrbit/E2"  -I"C:/SaturnOrbit/DUCK/SATURN/SEGALIB/INCLUDE" 
+CXXINCS =  -I"C:/SaturnOrbit/SH_COFF/sh-coff/include/c++/3.4-GNUSH_v0501"  -I"C:/SaturnOrbit/SGL_302j/INC"  -I"C:/SaturnOrbit/SBL_601/SEGALIB/INCLUDE"  -I"C:/SaturnOrbit/TOOLS/BGCON"  -I"C:/SaturnOrbit/RB/INC"  -I"C:/SaturnOrbit/E2"  -I"C:/SaturnOrbit/DUCK/SATURN/SEGALIB/INCLUDE" 
+BIN  = sl_coff.coff
+CXXFLAGS = $(CXXINCS) -m2 -Wno-deprecated #-fno-rtti -fno-exceptions  
+CFLAGS = $(INCS) -m2  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before sl_coff.coff all-after
+
+include C:/SaturnOrbit/COMMON/coff.mak
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "sl_coff.coff" $(LIBS)
+
+cinit.o: cinit.c
+	$(CC) -c cinit.c -o cinit.o $(CFLAGS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+textures.o: textures.c
+	$(CC) -c textures.c -o textures.o $(CFLAGS)
+
+polygons.o: polygons.c
+	$(CC) -c polygons.c -o polygons.o $(CFLAGS)
+
+loader.o: loader.c
+	$(CC) -c loader.c -o loader.o $(CFLAGS)
